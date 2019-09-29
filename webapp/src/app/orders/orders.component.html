@@ -1,0 +1,60 @@
+<clr-datagrid>
+  <clr-dg-placeholder>): هیچ سفارشی یافت نشد</clr-dg-placeholder>
+
+  <clr-dg-column class="dg-header" [clrDgField]="'User.FullName'">نام مشتری</clr-dg-column>
+  <clr-dg-column class="dg-header" [clrDgField]="'State'" >وضعیت سفارش
+    <clr-dg-filter [clrDgFilter]="statusFilter">
+      <order-status-filter #statusFilter></order-status-filter>
+    </clr-dg-filter>
+  </clr-dg-column>
+  <clr-dg-column class="dg-header" [clrDgField]="'TotalPrice'">مبلغ کل</clr-dg-column>
+  <clr-dg-column class="dg-header" [clrDgField]="'TotalCount'">تعداد</clr-dg-column>
+  <clr-dg-column class="dg-header" [clrDgField]="'SubmitDatePersian'">زمان سفارش</clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let order of orderService.orders;"
+              [clrDgItem]="order">
+    <clr-dg-cell class="dg-cell">{{order.User.FullName}}</clr-dg-cell>
+    <clr-dg-cell class="dg-cell">{{order.State | orderState}}</clr-dg-cell>
+    <clr-dg-cell class="dg-cell">{{order.TotalPrice}}</clr-dg-cell>
+    <clr-dg-cell class="dg-cell">{{order.TotalCount}}</clr-dg-cell>
+    <clr-dg-cell class="dg-cell">{{order.SubmitDatePersian}}</clr-dg-cell>
+    <clr-dg-row-detail *clrIfExpanded>
+      <table class="table table-compact table-noborder m-0 p-0">
+        <thead>
+          <tr>
+            <th class="left dg-detail-header">نام محصول</th>
+            <th class="left dg-detail-header">قیمت</th>
+            <th class="left dg-detail-header">تعداد</th>
+            <th class="left dg-detail-header">مبلغ کل</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of order.Items">
+          <td class="left dg-detail-header">{{item.Product.Name}}</td>
+          <td class="left dg-detail-header">{{item.Product.Price}}</td>
+          <td class="left dg-detail-header">{{item.Count}}</td>
+          <td class="left dg-detail-header">{{item.TotalPrice}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </clr-dg-row-detail>
+    <clr-dg-action-overflow>
+      <button class="action-item" (click)="onChangeState(order, 2)" *ngIf="order.State == 1">ارسال شد</button>
+      <button class="action-item" (click)="onChangeState(order, 3)" *ngIf="order.State != 3">تحویل داده شد</button>
+      <button class="action-item" (click)="onDelete(order)">حذف سفارش</button>
+    </clr-dg-action-overflow>
+  </clr-dg-row>
+
+  <clr-dg-footer class="dg-cell">{{orderService.orders?.length}} :تعداد کل سفارشات</clr-dg-footer>
+</clr-datagrid>
+
+<clr-modal [(clrModalOpen)]="isDeleteModalOpen">
+  <div class="modal-body confirm-header">
+    <h5>آیا از حذف سفارش به شماره <span class="text-primary">{{selected?.Id}}</span> مطمعن هستید؟</h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline confirm-btn" (click)="onDeleteCancel()">انصراف</button>
+    <button type="button" class="btn btn-danger confirm-btn" (click)="onDeleteOK()">
+      حذف</button>
+  </div>
+</clr-modal>

@@ -1,0 +1,29 @@
+<clr-header class="header-6">
+  <div class="branding">
+    <a [routerLink]="['']" class="nav-link">
+      <clr-icon shape="store"></clr-icon>
+      <span class="title">Zoni Pakhsh</span>
+    </a>
+  </div>
+  <div class="header-nav" [clr-nav-level]="1">
+    <a [routerLink]="['/dashboard']" routerLinkActive="active" class="nav-link nav-text">داشبورد</a>
+    <a [routerLink]="['/categories']" routerLinkActive="active" class="nav-link nav-text">دسته بندی ها</a>
+    <a [routerLink]="['/products']" routerLinkActive="active" class="nav-link nav-text">محصولات</a>
+    <a [routerLink]="['/orders']" routerLinkActive="active" class="nav-link nav-text">سفارشات</a>
+    <a [routerLink]="['/users']" routerLinkActive="active" class="nav-link nav-text">کاربران</a>
+  </div>
+  <div class="header-actions">
+    <a [routerLink]="['/login']" *ngIf="!loginService.isAuthenticated" class="nav-link nav-icon">
+      <clr-icon shape="login"></clr-icon>
+    </a>
+    <a [routerLink]="['/logout']" *ngIf="loginService.isAuthenticated" (click)="logout()" class="nav-link nav-icon">
+      <clr-icon shape="logout"></clr-icon>
+    </a>
+    <a *ngIf="themeService.isDark" [routerLink]="['/light']" class="nav-link nav-icon" (click)="themeService.setTheme(themeService.themes[0])">
+      <clr-icon shape="sun"></clr-icon>
+    </a>
+    <a *ngIf="!themeService.isDark" [routerLink]="['/dark']" class="nav-link nav-icon" (click)="themeService.setTheme(themeService.themes[1])">
+      <clr-icon shape="moon"></clr-icon>
+    </a>
+  </div>
+</clr-header>

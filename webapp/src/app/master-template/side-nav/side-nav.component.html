@@ -1,0 +1,12 @@
+<nav class="sidenav" [clr-nav-level]="2">
+  <section class="sidenav-content">
+    <section class="nav-group">
+      <label><a class="nav-link nav-link-header" [routerLink]="['/products']">محصولات</a></label>
+      <ul class="nav-list">
+        <li *ngFor="let category of categoryService.categories">
+          <a [routerLink]="['/categories', category.Id, 'products']" routerLinkActive="active" class="nav-link">{{category.Name}}</a>
+        </li>
+      </ul>
+    </section>
+  </section>
+</nav>

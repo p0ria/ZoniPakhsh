@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e203ec59194640eabe25b1581165f5e3" Name="Diagram1">
+        <EntityTypeShape EntityType="Market.PersistenceLayer.EF.Models.Category" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Market.PersistenceLayer.EF.Models.OrderItem" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Market.PersistenceLayer.EF.Models.Order" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Market.PersistenceLayer.EF.Models.Product" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Market.PersistenceLayer.EF.Models.UserCredential" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Market.PersistenceLayer.EF.Models.User" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="Market.PersistenceLayer.EF.Models.FK_Products_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="Market.PersistenceLayer.EF.Models.FK_OrderItems_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="Market.PersistenceLayer.EF.Models.FK_OrderItems_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="Market.PersistenceLayer.EF.Models.FK_Orders_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Market.PersistenceLayer.EF.Models.FK_UserCredentials_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

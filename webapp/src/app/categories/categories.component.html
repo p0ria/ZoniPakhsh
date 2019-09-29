@@ -1,0 +1,70 @@
+<div fxLayout="row" class="toolbar">
+  <button type="button" class="btn btn-secondary actionbar-btn" (click)="onNew()"><clr-icon shape="plus"></clr-icon> دسته بندی جدید</button>
+</div>
+
+<div fxLayout="row wrap" class="offset-xs-1" *ngIf="categoryService.categories">
+  <div fxFlex="150px" fxFlexOffset="10px"
+       *ngFor="let category of categoryService.categories">
+    <div  class="card clickable">
+      <a class="card-body" [routerLink]="['/categories', category.Id, 'products']">
+      <div class="card-img p-0">
+        <img class="card-imgage" [src]="category.ImageUrl">
+      </div>
+      <div class="card-block">
+        <p class="card-text text-center">
+          {{category?.Name}}
+        </p>
+      </div>
+      </a>
+      <div class="card-footer" fxLayout="row" fxLayoutAlign="center">
+        <div class="btn-group btn-outline">
+          <button class="btn btn-icon" (click)="onEdit(category)">
+            <clr-icon shape="pencil"></clr-icon>
+          </button>
+          <button class="btn btn-icon" (click)="onDelete(category)">
+            <clr-icon shape="trash"></clr-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<clr-modal class="rtl-modal" [(clrModalOpen)]="isModalOpen">
+  <h3 class="modal-title">{{isEdit ? 'ویرایش' : 'افزودن'}} دسته</h3>
+  <div class="modal-body">
+    <form clrForm>
+      <clr-input-container *ngIf="isEdit">
+        <label class="modal-field">شناسه دسته</label>
+        <input clrInput class="modal-field" type="text"  name="id" [(ngModel)]="newCategory.Id" [disabled]="true">
+      </clr-input-container>
+      <clr-input-container>
+        <label class="modal-field">نامه دسته</label>
+        <input clrInput class="modal-field" type="text"  name="name" [(ngModel)]="newCategory.Name">
+      </clr-input-container>
+      <clr-input-container>
+        <label class="modal-field">تصویر</label>
+        <input clrInput class="modal-field" #uploader type="file" (change)="onFileChange($event)" accept=".png,.jpeg,.jpg">
+      </clr-input-container>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline modal-field" (click)="onCancel()">انصراف</button>
+    <button type="button" class="btn btn-primary modal-field" (click)="onOK()"
+            [disabled]="!newCategory.Name || (isEdit? false : !newCategory.ImageData) || (isEdit? false : !newCategory.ImageType)">
+      ثبت</button>
+  </div>
+</clr-modal>
+
+<clr-modal class="rtl-modal" [(clrModalOpen)]="isDeleteModalOpen">
+  <div class="modal-body">
+    <h5 class="confirm-header">آیا از حذف دسته <span class="text-primary">{{selectedDelete?.Name}}</span> مطمعن هستید؟</h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline confirm-btn" (click)="onDeleteCancel()">انصراف</button>
+    <button type="button" class="btn btn-danger confirm-btn" (click)="onDeleteOK()">
+      حذف</button>
+  </div>
+</clr-modal>

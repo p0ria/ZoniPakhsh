@@ -1,0 +1,12 @@
+<clr-checkbox-wrapper>
+  <input type="checkbox" clrCheckbox [checked]="isSubmitted" (change)="setIsSubmitted($event)" />
+  <label>ثبت شده</label>
+</clr-checkbox-wrapper>
+<clr-checkbox-wrapper>
+  <input type="checkbox" clrCheckbox [checked]="isSent" (change)="setIsSent($event)" />
+  <label>ارسال شده</label>
+</clr-checkbox-wrapper>
+<clr-checkbox-wrapper>
+  <input type="checkbox" clrCheckbox [checked]="isDelivered" (change)="setIsDelivered($event)" />
+  <label>تحویل داده شده</label>
+</clr-checkbox-wrapper>

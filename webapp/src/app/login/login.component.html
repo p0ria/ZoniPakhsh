@@ -1,0 +1,29 @@
+<div class="login-wrapper clr-col-12 clr-col-md-10 clr-offset-md-1 clr-col-lg-8 clr-offset-lg-2">
+  <form [formGroup]="loginForm" class="login" (ngSubmit)="login()">
+    <section class="title">
+      <h3 class="welcome">Welcome to</h3>
+      <span class="trademark">Zoni Pakhsh </span> Admin Panel
+      <h5 class="hint">Use your username and password to login</h5>
+    </section>
+    <div class="login-group">
+      <clr-input-container>
+        <input clrInput formControlName="username" placeholder="Username"  />
+        <clr-control-error>This field is required!</clr-control-error>
+      </clr-input-container>
+      <clr-password-container>
+        <input clrPassword formControlName="password" placeholder="Password"/>
+        <clr-control-error>This field is required!</clr-control-error>
+      </clr-password-container>
+      <clr-checkbox-wrapper>
+        <label>Remember me</label>
+        <input type="checkbox" name="rememberMe" clrCheckbox/>
+      </clr-checkbox-wrapper>
+      <div class="error active" [class.active]="notFound">
+        Invalid user name or password
+      </div>
+      <button class="btn btn-primary" type="submit" [clrLoading]="isLoading" [disabled]="loginForm.invalid">LogIn</button>
+      <a href="javascript://" class="signup">Sign up as a new user</a>
+    </div>
+  </form>
+</div>
+

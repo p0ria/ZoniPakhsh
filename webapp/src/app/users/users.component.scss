@@ -1,0 +1,37 @@
+clr-datagrid{
+  min-height: 220px;
+}
+
+
+.dg-header{
+  font-size: 16px;
+}
+
+.dg-cell{
+  font-size: 15px;
+}
+
+.actionbar-btn{
+  font-size: 14px;
+}
+
+.confirm-header{
+  font-size: 18px;
+  min-height: 40px;
+}
+
+.confirm-btn{
+  font-size: 16px;
+}
+
+.rtl-modal{
+  direction: rtl;
+}
+
+.modal-field{
+  font-size: 15px;
+  &.modal-field-address{
+    width: 100%;
+  }
+}
+

@@ -1,0 +1,74 @@
+<clr-datagrid [(clrDgSingleSelected)] ="selected">
+  <clr-dg-action-bar>
+    <div class="btn-group">
+      <button type="button" class="btn btn-sm btn-secondary actionbar-btn" (click)="onNew()"><clr-icon shape="plus"></clr-icon> جدید</button>
+      <button type="button" class="btn btn-sm btn-secondary actionbar-btn" (click)="onEdit()" [disabled]="!selected"><clr-icon shape="pencil"></clr-icon> ویرایش</button>
+      <button type="button" class="btn btn-sm btn-secondary actionbar-btn" (click)="onDelete()" [disabled]="!selected"><clr-icon shape="close"></clr-icon> حذف</button>
+    </div>
+  </clr-dg-action-bar>
+
+  <clr-dg-placeholder>): هیچ کاربری یافت نشد</clr-dg-placeholder>
+
+  <clr-dg-column class="dg-header" [clrDgField]="'FullName'">نام کاربر</clr-dg-column>
+  <clr-dg-column class="dg-header"  [clrDgField]="'Phone'" >شماره موبایل</clr-dg-column>
+  <clr-dg-column class="dg-header" [clrDgField]="'Role'">سمت</clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let user of users"
+              [clrDgItem]="user">
+    <clr-dg-cell class="dg-cell">{{user.FullName}}</clr-dg-cell>
+    <clr-dg-cell class="dg-cell">{{user.Phone}}</clr-dg-cell>
+    <clr-dg-cell class="dg-cell">{{user.Role}}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer class="dg-cell">{{users?.length}} :تعداد کل کاربران</clr-dg-footer>
+</clr-datagrid>
+
+<clr-modal class="rtl-modal" [(clrModalOpen)]="isModalOpen">
+  <h3 class="modal-title">{{isEdit ? 'ویرایش کاربر' : 'افزودن کاربر'}}</h3>
+  <div class="modal-body">
+    <form clrForm>
+      <clr-input-container>
+        <label class="modal-field">نام</label>
+        <input clrInput class="modal-field" type="text"  name="firstName" [(ngModel)]="newUser.FirstName">
+      </clr-input-container>
+      <clr-input-container>
+        <label class="modal-field">نام خانوادگی</label>
+        <input clrInput class="modal-field" type="text"  name="lastName" [(ngModel)]="newUser.LastName">
+      </clr-input-container>
+      <clr-input-container>
+        <label class="modal-field">موبایل</label>
+        <input clrInput class="modal-field" type="text"  name="phone" [(ngModel)]="newUser.Phone">
+      </clr-input-container>
+      <clr-input-container>
+        <label class="modal-field">پسورد</label>
+        <input clrInput class="modal-field" type="text"  name="password" [(ngModel)]="newUser.Password">
+      </clr-input-container>
+      <clr-input-container>
+        <label class="modal-field">آدرس</label>
+        <input clrInput class="modal-field modal-field-address" type="text"  name="address" [(ngModel)]="newUser.Address">
+      </clr-input-container>
+      <clr-input-container>
+        <label class="modal-field">کدپستی</label>
+        <input clrInput class="modal-field" type="text"  name="postalCode" [(ngModel)]="newUser.PostalCode">
+      </clr-input-container>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline modal-field" (click)="onCancel()">انصراف</button>
+    <button type="button" class="btn btn-primary modal-field" (click)="onOK()"
+            [disabled]="!newUser.FirstName || !newUser.LastName || !newUser.Phone || !newUser.Address || !newUser.PostalCode">
+      ثبت</button>
+  </div>
+</clr-modal>
+
+<clr-modal class="rtl-modal" [(clrModalOpen)]="isDeleteModalOpen">
+  <div class="modal-body confirm-header">
+    <h5>آیا از حذف کاربر <span class="text-primary">{{selected?.FullName}}</span> مطمعن هستید؟</h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline confirm-btn" (click)="onDeleteCancel()">انصراف</button>
+    <button type="button" class="btn btn-danger confirm-btn" (click)="onDeleteOK()">
+      حذف</button>
+  </div>
+</clr-modal>
