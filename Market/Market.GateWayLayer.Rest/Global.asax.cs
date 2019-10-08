@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
+using Market.GateWayLayer.Rest.Common;
 
 namespace Market.GateWayLayer.Rest
 {
@@ -13,5 +14,7 @@ namespace Market.GateWayLayer.Rest
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
+
+        
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.ExceptionHandling;
+using Market.GateWayLayer.Rest.Common;
 
 namespace Market.GateWayLayer.Rest
 {

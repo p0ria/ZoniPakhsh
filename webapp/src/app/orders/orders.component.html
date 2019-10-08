@@ -15,7 +15,7 @@
               [clrDgItem]="order">
     <clr-dg-cell class="dg-cell">{{order.User.FullName}}</clr-dg-cell>
     <clr-dg-cell class="dg-cell">{{order.State | orderState}}</clr-dg-cell>
-    <clr-dg-cell class="dg-cell">{{order.TotalPrice}}</clr-dg-cell>
+    <clr-dg-cell class="dg-cell">{{order.TotalPrice  | number:'2.'}}</clr-dg-cell>
     <clr-dg-cell class="dg-cell">{{order.TotalCount}}</clr-dg-cell>
     <clr-dg-cell class="dg-cell">{{order.SubmitDatePersian}}</clr-dg-cell>
     <clr-dg-row-detail *clrIfExpanded>

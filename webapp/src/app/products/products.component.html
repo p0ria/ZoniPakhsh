@@ -19,7 +19,7 @@
               [clrDgItem]="product">
     <clr-dg-cell class="dg-cell">{{product.Name}}</clr-dg-cell>
     <clr-dg-cell class="dg-cell">{{product.Category?.Name}}</clr-dg-cell>
-    <clr-dg-cell class="dg-cell">{{product.Price}}</clr-dg-cell>
+    <clr-dg-cell class="dg-cell">{{product.Price | number:'2.' }}</clr-dg-cell>
     <clr-dg-cell class="dg-cell">{{product.Count}}</clr-dg-cell>
     <clr-dg-cell>
       <img class="product-image" [src]="product.ImageUrl">

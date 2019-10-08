@@ -1,4 +1,6 @@
-const base = /*'http://www.zonipakhsh.ir/'*/ 'http://localhost:5200/';
+const base =
+  'http://www.zonipakhsh.ir/' ;
+  //'http://localhost:5200/';
 const baseApi = base + 'api/';
 export const Urls = {
   Base: base,
